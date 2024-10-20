@@ -19,14 +19,18 @@ export default function Verification({ onVerificationComplete, registrationData 
     setEmailError('');
     setIsEmailVerifying(true);
     try {
-      await axiosInstance.post('auth/verify-email', {
+      const response = await axiosInstance.post('/auth/verify-email', {
         companyEmail: registrationData.companyEmail,
         otp: emailOtp
       });
-      setEmailVerified(true);
+      if (response.data.message === 'Email verified successfully') {
+        setEmailVerified(true);
+      } else {
+        setEmailError('Email verification failed. Please try again.');
+      }
     } catch (error) {
       console.error('Email verification failed:', error);
-      setEmailError('Email verification failed. Please try again.');
+      setEmailError(error.response?.data?.message || 'Email verification failed. Please try again.');
     } finally {
       setIsEmailVerifying(false);
     }
@@ -36,14 +40,18 @@ export default function Verification({ onVerificationComplete, registrationData 
     setMobileError('');
     setIsMobileVerifying(true);
     try {
-      await axiosInstance.post('auth/verify-mobile', {
+      const response = await axiosInstance.post('/auth/verify-mobile', {
         mobile: registrationData.mobile,
         otp: mobileOtp
       });
-      setMobileVerified(true);
+      if (response.data.message === 'Mobile number verified successfully') {
+        setMobileVerified(true);
+      } else {
+        setMobileError('Mobile verification failed. Please try again.');
+      }
     } catch (error) {
       console.error('Mobile verification failed:', error);
-      setMobileError('Mobile verification failed. Please try again.');
+      setMobileError(error.response?.data?.message || 'Mobile verification failed. Please try again.');
     } finally {
       setIsMobileVerifying(false);
     }
@@ -71,7 +79,7 @@ export default function Verification({ onVerificationComplete, registrationData 
   return (
     <>
       <h2 className="text-2xl font-semibold mb-1 text-center">Verify</h2>
-      <p className="text-gray-500 text-sm mb-6 text-center">Lorem Ipsum is simply dummy text</p>
+      <p className="text-gray-500 text-sm mb-6 text-center">Please enter the OTPs sent to your email and mobile</p>
       <form className="space-y-4">
         <div className="relative">
           <input

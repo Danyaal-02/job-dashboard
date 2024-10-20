@@ -48,6 +48,14 @@ const App = () => {
             </PrivateRoute>
           } 
         />
+        <Route 
+          path="*" 
+          element={
+            <PrivateRoute>
+              <Navigate to="/dashboard" replace />
+            </PrivateRoute>
+          } 
+        />
       </Routes>
     </Router>
   );

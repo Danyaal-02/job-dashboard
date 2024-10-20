@@ -73,8 +73,6 @@ Ensure you have the following installed:
    JWT_SECRET=your_jwt_secret
    FRONTEND_URL=http://localhost:5173
 
-   # Security
-   OTP_EXPIRY_MINUTES=10
    ```
 
 4. **Run Backend**:
@@ -130,5 +128,5 @@ Here are some key API routes for the backend:
 
 ## 💻 Deployment
 
-- **Frontend**: Deployed on [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/).
-- **Backend**: Deployed on [Render](https://render.com/) or [Heroku](https://www.heroku.com/).
+- **Frontend**: Deployed on [Netlify](https://job-dashboard-02.netlify.app).
+- **Backend**: Deployed on [Render](https://job-dashboard-s4pp.onrender.com/api)

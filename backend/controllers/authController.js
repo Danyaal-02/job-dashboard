@@ -1,13 +1,17 @@
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const { sendVerificationEmail, sendVerificationSMS, sendWelcomeEmail } = require('../services/emailService');
+import User from '../models/User.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import { 
+  sendVerificationEmail, 
+  sendVerificationSMS, 
+  sendWelcomeEmail 
+} from '../services/emailService.js';
 
 const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
 
-exports.register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { name, companyName, companyEmail, password, mobile, employeeSize } = req.body;
     
@@ -43,7 +47,7 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.verifyEmail = async (req, res) => {
+export const verifyEmail = async (req, res) => {
   try {
     const { companyEmail, otp } = req.body;
     
@@ -72,7 +76,7 @@ exports.verifyEmail = async (req, res) => {
   }
 };
 
-exports.verifyMobile = async (req, res) => {
+export const verifyMobile = async (req, res) => {
   try {
     const { mobile, otp } = req.body;
     
@@ -101,7 +105,7 @@ exports.verifyMobile = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { companyEmail, password } = req.body;
     

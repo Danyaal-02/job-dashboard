@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
-module.exports = async (req, res, next) => {
+const auth = async (req, res, next) => {
   try {
     const authHeader = req.header('Authorization');
     
@@ -36,3 +36,5 @@ module.exports = async (req, res, next) => {
     res.status(500).json({ message: 'Server error during authentication' });
   }
 };
+
+export default auth;

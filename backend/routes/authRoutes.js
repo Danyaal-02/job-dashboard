@@ -1,13 +1,13 @@
-const express = require('express');
-const router = express.Router();
-const { 
+import express from 'express';
+import { 
   register, 
   login, 
   verifyEmail, 
   verifyMobile, 
-  resendOTP 
-} = require('../controllers/authController');
-const { validate, validationSchemas } = require('../utils/validation');
+} from '../controllers/authController.js';
+import { validate, validationSchemas } from '../utils/validation.js';
+
+const router = express.Router();
 
 // Registration route
 router.post('/register', validate(validationSchemas.registration), register);
@@ -21,5 +21,4 @@ router.post('/verify-email', validate(validationSchemas.emailVerification), veri
 // Mobile verification route
 router.post('/verify-mobile', validate(validationSchemas.mobileVerification), verifyMobile);
 
-
-module.exports = router;
+export default router;

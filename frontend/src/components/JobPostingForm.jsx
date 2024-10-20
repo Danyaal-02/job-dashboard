@@ -135,7 +135,7 @@ const JobPostingForm = ({ onJobCreated }) => {
           </div>
           <div className="flex items-center">
             <label className="w-1/3 text-right pr-4 text-lg">Add Candidate</label>
-            <div className="w-2/3 border rounded-md p-2 flex items-center relative" ref={inputRef}>
+            <div className="w-2/3 border rounded-md p-2 py-5 flex items-center relative" ref={inputRef}>
               {formData.candidates.map((candidate, index) => (
                 <div key={index} className="border gap-1 rounded-full px-2 py-1 flex items-center mr-2">
                   <div className='border rounded-full w-5 h-5 bg-gray-100'></div>

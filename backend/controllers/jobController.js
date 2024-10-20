@@ -1,7 +1,7 @@
-const Job = require('../models/Job');
-const { sendJobAlert } = require('../services/emailService');
+import Job from '../models/Job.js';
+import { sendJobAlert } from '../services/emailService.js';
 
-exports.createJob = async (req, res) => {
+export const createJob = async (req, res) => {
     try {
       // 1. Create and save the job
       const { title, description, experienceLevel, candidates, endDate } = req.body;
@@ -44,9 +44,9 @@ exports.createJob = async (req, res) => {
         error: error.message 
       });
     }
-  };
+};
 
-exports.getJobs = async (req, res) => {
+export const getJobs = async (req, res) => {
   try {
     const jobs = await Job.find({ company: req.user.id });
     res.json(jobs);

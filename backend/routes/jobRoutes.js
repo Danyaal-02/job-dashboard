@@ -1,9 +1,10 @@
-const express = require('express');
+import express from 'express';
+import { createJob, getJobs } from '../controllers/jobController.js';
+import auth from '../middlewares/auth.js';
+
 const router = express.Router();
-const { createJob, getJobs } = require('../controllers/jobController');
-const auth = require('../middlewares/auth');
 
 router.post('/', auth, createJob);
 router.get('/', auth, getJobs);
 
-module.exports = router;
+export default router;

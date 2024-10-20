@@ -6,7 +6,15 @@ import { errorHandler } from './middlewares/errorHandler.js';
 
 const app = express();
 
-app.use(cors());
+const frontendURL = process.env.FRONTEND_URL || 'http://localhost:5000';
+
+// Configure CORS
+const corsOptions = {
+  origin: frontendURL,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
